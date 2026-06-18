@@ -1,334 +1,354 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>友だち追加で受け取る | 〈サービス名〉公式LINE</title>
-<meta name="description" content="友だち追加で限定特典をプレゼント中。">
+<title>本日0時まで｜LINE友だち追加で無料プレゼント</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
   :root{
-    --bg:#F4EFE3;
-    --paper:#FBF7EC;
-    --ink:#1A1A1A;
-    --ink-soft:#6A6862;
-    --line:#E2DAC4;
-    --accent:#06C755;
-    --accent-dark:#04A547;
-    --gold:#B8985A;
+    --bg:#f4f1ea;
+    --bg2:#ece6d8;
+    --paper:#fbf9f4;
+    --ink:#26271f;
+    --ink-soft:#4a4c43;
+    --sage:#6b7a5c;
+    --sage-d:#4a5b41;
+    --sage-pale:#e0e6d4;
+    --line:#06c755;
+    --line-d:#05b04b;
+    --border:#dcd4c2;
+    --serif:'Zen Old Mincho',serif;
+    --sans:'Zen Kaku Gothic New',sans-serif;
+    --latin:'Jost',sans-serif;
+    --soft:0 10px 30px rgba(51,53,47,.07);
   }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.9;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-weight:500}
+  ::selection{background:var(--sage-pale);color:var(--sage-d)}
+  a{color:inherit}
 
-  html, body{height:100%}
+.kicker{font-family:var(–latin);font-weight:500;font-size:.84rem;letter-spacing:.36em;color:var(–sage-d);text-transform:uppercase}
+.divider{width:34px;height:2px;background:var(–sage);margin:18px auto;border-radius:2px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
 
-  body{
-    font-family:'Zen Kaku Gothic New', -apple-system, BlinkMacSystemFont, sans-serif;
-    background:var(--bg);
-    color:var(--ink);
-    line-height:1.7;
-    -webkit-font-smoothing:antialiased;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-height:100vh;
-    padding:24px 20px;
-    position:relative;
-    overflow-x:hidden;
-  }
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px 34px;background:rgba(244,241,234,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(–border);transition:padding .4s}
+.nav.shrink{padding:11px 34px}
+.logo{font-family:var(–serif);font-weight:600;font-size:1.05rem;letter-spacing:.04em;color:var(–ink);line-height:1.3}
+.logo .lead{display:block;font-family:var(–latin);font-size:.56rem;letter-spacing:.36em;color:var(–sage);margin-bottom:2px;font-weight:400;text-transform:uppercase}
+.logo small{display:block;font-family:var(–latin);font-size:.56rem;letter-spacing:.36em;color:var(–sage);margin-top:1px;font-weight:400}
+.nav-line{display:inline-flex;align-items:center;gap:8px;font-family:var(–sans);font-weight:700;font-size:.86rem;background:var(–line);color:#fff;text-decoration:none;padding:10px 20px;border-radius:40px;box-shadow:0 4px 12px rgba(6,199,85,.32);transition:.25s}
+.nav-line:hover{background:var(–line-d);transform:translateY(-2px)}
+.nav-line svg{width:18px;height:18px}
+@media(max-width:600px){.nav{padding:12px 16px}.logo{font-size:.88rem}.logo .lead,.logo small{font-size:.5rem;letter-spacing:.28em}.nav-line{padding:9px 14px;font-size:.76rem}}
 
-  /* Soft atmospheric background */
-  body::before{
-    content:"";
-    position:fixed; inset:0;
-    background:
-      radial-gradient(circle at 80% 0%, rgba(6,199,85,0.06) 0%, transparent 50%),
-      radial-gradient(circle at 0% 100%, rgba(184,152,90,0.05) 0%, transparent 50%);
-    pointer-events:none;
-  }
+/* hero */
+.hero{position:relative;padding:138px 24px 92px;text-align:center;overflow:hidden}
+.hero .glow{position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(138,154,123,.22),transparent 68%);top:-120px;left:50%;transform:translateX(-50%);filter:blur(6px)}
+.hero .leaf{position:absolute;color:var(–sage);opacity:.3;font-size:1.6rem;animation:drift 12s ease-in-out infinite}
+.hero .leaf:nth-child(2){top:20%;left:10%}
+.hero .leaf:nth-child(3){top:34%;right:12%;animation-delay:3s}
+.hero .leaf:nth-child(4){bottom:18%;left:16%;animation-delay:6s}
+@keyframes drift{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(10deg)}}
+.hero-inner{position:relative;z-index:2;max-width:720px;margin:0 auto}
+.hero .kicker{display:block;margin-bottom:22px;opacity:0;animation:fade 1s ease forwards .1s}
+.hero h1{font-family:var(–serif);font-weight:700;font-size:clamp(2rem,5.6vw,3.4rem);line-height:1.5;letter-spacing:.03em;color:var(–ink);opacity:0;animation:fade 1.1s ease forwards .3s}
+.hero h1 .em{color:var(–sage-d);position:relative}
+.hero h1 .em::after{content:””;position:absolute;left:0;right:0;bottom:6px;height:8px;background:var(–sage-pale);z-index:-1;border-radius:4px}
+.hero-sub{font-size:1.06rem;color:var(–ink);max-width:520px;margin:24px auto 0;opacity:0;animation:fade 1.1s ease forwards .5s}
+@keyframes fade{to{opacity:1}}
 
-  /* === Card === */
-  .card{
-    width:100%;
-    max-width:420px;
-    background:var(--paper);
-    border:1px solid var(--line);
-    border-radius:24px;
-    padding:44px 32px 36px;
-    position:relative;
-    box-shadow:
-      0 1px 0 rgba(255,255,255,0.6) inset,
-      0 24px 48px -12px rgba(27,27,27,0.10),
-      0 8px 16px -8px rgba(27,27,27,0.06);
-    text-align:center;
-    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  }
+/* countdown */
+.cd-wrap{margin:44px auto 4px;opacity:0;animation:fade 1.1s ease forwards .7s}
+.cd-label{display:inline-flex;align-items:center;gap:8px;font-family:var(–serif);font-weight:700;font-size:1rem;color:var(–sage-d);margin-bottom:18px;letter-spacing:.04em}
+.cd-label .ln{width:22px;height:1px;background:var(–sage-d)}
+.cd{display:flex;gap:12px;justify-content:center;align-items:stretch}
+.cd .unit{background:var(–paper);border:1px solid var(–border);border-radius:16px;box-shadow:var(–soft);padding:18px 6px 12px;min-width:96px;position:relative}
+.cd .unit .num{font-family:var(–latin);font-weight:400;font-size:clamp(2.3rem,8vw,3.4rem);line-height:1;color:var(–ink);font-variant-numeric:tabular-nums}
+.cd .unit .lb{font-family:var(–latin);font-weight:500;font-size:.68rem;letter-spacing:.22em;color:var(–sage-d);margin-top:9px;text-transform:uppercase}
+.cd .colon{font-family:var(–latin);font-size:2rem;color:var(–sage);align-self:center;opacity:.6}
+.cd-note{margin-top:18px;font-size:.85rem;color:var(–ink-soft)}
+@media(max-width:560px){.cd{gap:7px}.cd .unit{min-width:0;flex:1;padding:14px 4px 9px}.cd .colon{font-size:1.5rem}}
 
-  /* Decorative top tab */
-  .card::before{
-    content:"";
-    position:absolute;
-    top:-1px; left:50%;
-    transform:translateX(-50%);
-    width:72px; height:4px;
-    background:var(--gold);
-    border-radius:0 0 6px 6px;
-  }
+/* LINE button */
+.line-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;font-family:var(–sans);font-weight:700;font-size:1.15rem;letter-spacing:.04em;color:#fff;background:var(–line);text-decoration:none;padding:20px 52px;border-radius:60px;box-shadow:0 14px 32px rgba(6,199,85,.34);transition:.28s;margin-top:38px;position:relative;overflow:hidden}
+.line-btn::before{content:””;position:absolute;top:0;left:-120%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.35),transparent);transition:.7s}
+.line-btn:hover{background:var(–line-d);transform:translateY(-3px);box-shadow:0 20px 42px rgba(6,199,85,.42)}
+.line-btn:hover::before{left:130%}
+.line-btn svg{width:26px;height:26px;flex:none}
+.hero .line-btn{opacity:0;animation:fade 1.1s ease forwards .9s}
+/* ボタンを呼吸させて注目を集める */
+.line-btn.pulse-btn{animation:fade 1.1s ease forwards .9s, beat 2.4s ease-in-out 2s infinite}
+@keyframes beat{0%,100%{box-shadow:0 14px 32px rgba(6,199,85,.34)}50%{box-shadow:0 14px 38px rgba(6,199,85,.55),0 0 0 8px rgba(6,199,85,.12)}}
+@media(prefers-reduced-motion:reduce){.line-btn.pulse-btn{animation:fade 1.1s ease forwards .9s}}
+/* 社会的証明 */
+.social-proof{margin-top:18px;display:inline-flex;align-items:center;gap:12px;background:var(–paper);border:1px solid var(–border);border-radius:40px;padding:8px 20px 8px 12px;box-shadow:var(–soft);opacity:0;animation:fade 1.1s ease forwards 1s}
+.social-proof .avs{display:flex}
+.social-proof .avs i{width:28px;height:28px;border-radius:50%;border:2px solid var(–paper);margin-left:-10px;display:block}
+.social-proof .avs i:first-child{margin-left:0}
+.social-proof .avs i:nth-child(1){background:var(–sage)}
+.social-proof .avs i:nth-child(2){background:var(–sage-d)}
+.social-proof .avs i:nth-child(3){background:#b3c2a3}
+.social-proof .avs i:nth-child(4){background:#9aab8a}
+.social-proof .txt{font-size:.9rem;color:var(–ink)}
+.social-proof .txt b{font-family:var(–serif);color:var(–sage-d);font-weight:700}
+.trust{margin-top:18px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.86rem;color:var(–ink);font-weight:500;opacity:0;animation:fade 1.1s ease forwards 1.05s}
+.trust span{display:inline-flex;align-items:center;gap:6px}
+.trust .d{width:6px;height:6px;border-radius:50%;background:var(–sage)}
 
-  /* Corner ticks (like a ticket) */
-  .card::after{
-    content:"";
-    position:absolute;
-    inset:14px;
-    border:1px solid var(--line);
-    border-radius:14px;
-    pointer-events:none;
-    opacity:0.5;
-  }
+/* section base */
+section.blk{position:relative;padding:92px 24px}
+.wrap{max-width:900px;margin:0 auto}
+.head{text-align:center;margin-bottom:54px}
+.head .kicker{display:block;margin-bottom:6px}
+.head h2{font-family:var(–serif);font-weight:700;font-size:clamp(1.6rem,4.2vw,2.4rem);line-height:1.5;color:var(–ink);letter-spacing:.03em}
+.head p{color:var(–ink-soft);font-size:.95rem;margin-top:14px}
 
-  /* === Label === */
-  .label{
-    font-size:10px;
-    letter-spacing:0.35em;
-    color:var(--gold);
-    font-weight:700;
-    margin-bottom:24px;
-    position:relative;
-    display:inline-block;
-    padding:0 16px;
-  }
-  .label::before, .label::after{
-    content:"";
-    position:absolute; top:50%;
-    width:18px; height:1px;
-    background:var(--gold);
-    opacity:0.5;
-  }
-  .label::before{ right:100%; }
-  .label::after{ left:100%; }
+/* steps */
+.steps{background:linear-gradient(180deg,var(–bg),var(–bg2))}
+.s-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:760px){.s-grid{grid-template-columns:1fr;max-width:380px;margin:0 auto}}
+.s{position:relative;background:var(–paper);border:1px solid var(–border);border-radius:20px;box-shadow:var(–soft);padding:42px 26px 32px;text-align:center}
+.s .no{position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:var(–sage-d);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(–latin);font-size:1.2rem;box-shadow:0 6px 16px rgba(95,113,85,.4)}
+.s .ic{font-size:2.1rem;margin:8px 0 12px}
+.s h3{font-family:var(–serif);font-weight:600;font-size:1.12rem;margin-bottom:8px;color:var(–ink)}
+.s p{font-size:.94rem;color:var(–ink-soft)}
 
-  /* === Gift icon === */
-  .icon{
-    width:84px; height:84px;
-    margin:0 auto 24px;
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:38px;
-    box-shadow:
-      0 1px 0 rgba(255,255,255,1) inset,
-      0 4px 16px rgba(27,27,27,0.06);
-    position:relative;
-  }
-  .icon::after{
-    content:"";
-    position:absolute;
-    inset:-6px;
-    border:1px dashed rgba(184,152,90,0.4);
-    border-radius:50%;
-    animation: spin 30s linear infinite;
-  }
+/* assurance row */
+.assure{background:var(–bg)}
+.a-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:780px;margin:0 auto}
+@media(max-width:680px){.a-grid{grid-template-columns:1fr;max-width:360px}}
+.a{display:flex;align-items:center;gap:14px;background:var(–paper);border:1px solid var(–border);border-radius:14px;padding:20px 22px;box-shadow:var(–soft)}
+.a .ic{flex:none;width:42px;height:42px;border-radius:50%;background:var(–sage-pale);color:var(–sage-d);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.a p{font-size:.9rem;font-weight:500;color:var(–ink)}
 
-  /* === Headline === */
-  h1{
-    font-family:'Shippori Mincho', serif;
-    font-size:clamp(22px, 6vw, 26px);
-    font-weight:700;
-    line-height:1.5;
-    letter-spacing:0.02em;
-    margin-bottom:14px;
-  }
-  h1 .accent{
-    color:var(--accent-dark);
-    position:relative;
-  }
-  h1 .accent::after{
-    content:"";
-    position:absolute;
-    left:0; right:0; bottom:-2px;
-    height:6px;
-    background:rgba(6,199,85,0.18);
-    z-index:-1;
-    border-radius:2px;
-  }
+/* faq */
+.faq{background:linear-gradient(180deg,var(–bg2),var(–bg))}
+.faq-list{max-width:680px;margin:0 auto}
+.faq-item{background:var(–paper);border:1px solid var(–border);border-radius:14px;margin-bottom:14px;overflow:hidden;box-shadow:var(–soft)}
+.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:20px 24px;display:flex;align-items:center;gap:14px;font-family:var(–serif);font-weight:600;font-size:1rem;color:var(–ink)}
+.faq-q .q{font-family:var(–latin);color:var(–sage);font-size:1.05rem}
+.faq-q .plus{margin-left:auto;font-size:1.3rem;color:var(–sage);transition:.3s;line-height:1}
+.faq-item.open .plus{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a p{padding:0 24px 22px 52px;color:var(–ink-soft);font-size:.94rem}
 
-  /* === Subtext === */
-  .sub{
-    font-size:14px;
-    color:var(--ink-soft);
-    margin-bottom:32px;
-  }
+/* final */
+.final{position:relative;background:var(–sage-d);color:#fff;text-align:center;padding:96px 24px;overflow:hidden}
+.final::before{content:””;position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 0%,rgba(255,255,255,.12),transparent 60%)}
+.final .wrap{position:relative;z-index:2;max-width:600px}
+.final .kicker{color:rgba(255,255,255,.92)}
+.final h2{font-family:var(–serif);font-weight:700;font-size:clamp(1.7rem,4.6vw,2.6rem);line-height:1.5;margin:14px 0 10px;color:#fff}
+.final > .wrap > p{color:rgba(255,255,255,.92);margin-bottom:30px}
+.final .mini-cd{display:flex;gap:10px;justify-content:center;margin:0 auto 30px;max-width:340px}
+.final .mini-cd .u{flex:1;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.32);border-radius:12px;padding:12px 4px}
+.final .mini-cd .u .n{font-family:var(–latin);font-size:1.7rem;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
+.final .mini-cd .u .l{font-family:var(–latin);font-weight:500;font-size:.6rem;letter-spacing:.18em;color:rgba(255,255,255,.88);margin-top:5px;text-transform:uppercase}
+.final .line-btn{margin-top:6px}
+.final .fnote{margin-top:18px;font-size:.82rem;color:rgba(255,255,255,.82)}
 
-  /* === Divider === */
-  .divider{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin:0 auto 28px;
-    max-width:200px;
-  }
-  .divider::before, .divider::after{
-    content:"";
-    flex:1; height:1px;
-    background:var(--line);
-  }
-  .divider-dot{
-    width:5px; height:5px;
-    background:var(--gold);
-    border-radius:50%;
-  }
+/* footer */
+footer{background:#26271f;color:rgba(244,241,234,.82);text-align:center;padding:38px 24px}
+footer .logo{justify-content:center;color:var(–bg);margin-bottom:10px}
+footer a{color:#c8d4b4;text-decoration:none;margin:0 9px;font-size:.84rem;font-weight:500}
+footer a:hover{text-decoration:underline}
+footer .cp{font-size:.76rem;color:rgba(244,241,234,.6);margin-top:12px}
+footer .company{font-size:.84rem;color:rgba(244,241,234,.9);line-height:1.8;margin:16px 0 4px}
+footer .company b{font-weight:700;color:var(–bg)}
 
-  /* === CTA === */
-  .cta{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    width:100%;
-    background:var(--accent);
-    color:#fff;
-    text-decoration:none;
-    font-weight:700;
-    font-size:16px;
-    padding:19px 24px;
-    border-radius:60px;
-    box-shadow:
-      0 1px 0 rgba(255,255,255,0.3) inset,
-      0 12px 24px -6px rgba(6,199,85,0.45);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-  }
-  .cta:hover{
-    background:var(--accent-dark);
-    transform:translateY(-2px);
-    box-shadow:
-      0 1px 0 rgba(255,255,255,0.3) inset,
-      0 16px 32px -8px rgba(6,199,85,0.55);
-  }
-  .cta:active{ transform:translateY(0); }
-
-  .cta-icon{
-    width:24px; height:24px;
-    background:#fff;
-    border-radius:6px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--accent);
-    font-weight:900;
-    font-size:13px;
-    letter-spacing:-0.05em;
-  }
-
-  /* === Note === */
-  .note{
-    font-size:11px;
-    color:var(--ink-soft);
-    margin-top:16px;
-    letter-spacing:0.05em;
-  }
-  .note span{
-    display:inline-block;
-    margin:0 6px;
-    opacity:0.5;
-  }
-
-  .note-warn{
-    font-size:11px;
-    line-height:1.7;
-    color:var(--ink-soft);
-    margin-top:14px;
-    padding-top:14px;
-    border-top:1px dashed var(--line);
-  }
-  .note-warn strong{
-    color:var(--ink);
-    font-weight:700;
-    background:rgba(184,152,90,0.15);
-    padding:1px 4px;
-    border-radius:3px;
-  }
-
-  .legal{
-    margin-top:20px;
-    padding-top:16px;
-    border-top:1px solid var(--line);
-    font-size:11px;
-    color:var(--ink-soft);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-  }
-  .legal a{
-    color:var(--ink-soft);
-    text-decoration:none;
-    border-bottom:1px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
-    padding-bottom:1px;
-  }
-  .legal a:hover{
-    color:var(--ink);
-    border-bottom-color:var(--ink-soft);
-  }
-  .legal span{
-    opacity:0.4;
-  }
-
-  /* === Animations === */
-  @keyframes rise{
-    from{ opacity:0; transform:translateY(16px) scale(0.98); }
-    to{ opacity:1; transform:translateY(0) scale(1); }
-  }
-  @keyframes spin{
-    to{ transform:rotate(360deg); }
-  }
-
-  @media (max-width: 380px){
-    .card{ padding:36px 24px 30px; }
-  }
+/* sticky mobile */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;padding:11px 16px;background:rgba(244,241,234,.94);backdrop-filter:blur(8px);border-top:1px solid var(–border)}
+.sticky a{display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(–sans);font-weight:700;color:#fff;background:var(–line);padding:15px;border-radius:50px;text-decoration:none;box-shadow:0 6px 16px rgba(6,199,85,.34)}
+.sticky a svg{width:22px;height:22px}
+.sticky .mini{font-family:var(–latin);font-variant-numeric:tabular-nums;background:rgba(255,255,255,.22);padding:2px 10px;border-radius:20px;font-size:.85rem}
+@media(max-width:600px){.sticky{display:block}}
 </style>
+
+<!-- TikTok Pixel Code Start -->
+
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for( var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script") ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+  ttq.load('D8PQFK3C77U896T4RGB0');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+
+<!-- TikTok Pixel Code End -->
+
 </head>
 <body>
 
-<div class="card">
+  <!-- LINE icon (inline svg) -->
 
-  <div class="label">OFFICIAL LINE</div>
+<svg width="0" height="0" style="position:absolute"><symbol id="ln" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.5 2 2 5.7 2 10.2c0 4 3.6 7.4 8.4 7.9.3.07.78.22.9.5.1.26.06.66.03.92l-.14.86c-.04.26-.2 1 .9.55s5.9-3.48 8.05-5.96C21.4 13.4 22 11.9 22 10.2 22 5.7 17.5 2 12 2Z"/></symbol></svg>
 
-  <div class="icon">🎁</div>
+  <!-- nav -->
 
-  <h1>
-    友だち追加で<br>
-    <span class="accent">特典</span>を受け取る
-  </h1>
+  <nav class="nav" id="nav">
+    <div class="logo"><span class="lead">NPO法人</span>日本ライフサポート機構</div>
+    <a href="https://lin.ee/5DeqRw2" target="_blank" rel="noopener" class="nav-line"><svg><use href="#ln"/></svg>友だち追加</a>
+  </nav>
 
-  <p class="sub">下のボタンをタップするだけで完了します。</p>
+  <!-- hero -->
 
-  <div class="divider">
-    <span class="divider-dot"></span>
+  <section class="hero">
+    <span class="glow"></span>
+    <span class="leaf">❧</span><span class="leaf">✿</span><span class="leaf">❧</span>
+    <div class="hero-inner">
+      <span class="kicker">Free Gift on LINE</span>
+      <h1>LINEの友だち追加で、<br><span class="em">無料プレゼント</span>を<br>お受け取りください。</h1>
+      <p class="hero-sub">お申し込みは公式LINEから。友だち追加して、最短5分で受付が完了します。</p>
+
+```
+  <!-- countdown -->
+  <div class="cd-wrap">
+    <span class="cd-label"><span class="ln"></span>受付は本日0時まで<span class="ln"></span></span>
+    <div class="cd">
+      <div class="unit"><div class="num" id="h">00</div><div class="lb">Hours</div></div>
+      <div class="colon">:</div>
+      <div class="unit"><div class="num" id="m">00</div><div class="lb">Min</div></div>
+      <div class="colon">:</div>
+      <div class="unit"><div class="num" id="s">00</div><div class="lb">Sec</div></div>
+    </div>
+    <p class="cd-note">※ カウントダウンは毎日0時にリセットされます</p>
   </div>
 
-  <a href="https://lin.ee/Ot5hcjo" class="cta" target="_blank" rel="noopener">
-    <span class="cta-icon">L</span>
-    LINE追加で受け取り
-  </a>
-
-  <p class="note">無料 <span>·</span> いつでも解除OK</p>
-
-  <p class="note-warn">※ ボタンを押してもアクセスできない場合は、<br>ボタンを<strong>長押し</strong>してリンクをコピーしてください。</p>
-
-  <div class="legal">
-    <a href="tokushoho.html" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
-    <span aria-hidden="true">/</span>
-    <a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>
+  <a href="https://lin.ee/5DeqRw2" target="_blank" rel="noopener" class="line-btn pulse-btn"><svg><use href="#ln"/></svg>タップで友だち追加（無料）</a>
+  <div class="social-proof">
+    <span class="avs"><i></i><i></i><i></i><i></i></span>
+    <span class="txt">すでに <b>3,200人以上</b> が受け取っています</span>
   </div>
-
+  <div class="trust">
+    <span><span class="d"></span>登録は無料</span>
+    <span><span class="d"></span>受付は最短5分</span>
+    <span><span class="d"></span>ブロックはいつでも</span>
+  </div>
 </div>
+```
+
+  </section>
+
+  <!-- steps -->
+
+  <section class="blk steps">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">How to Receive</span>
+        <h2>受付までの流れ</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="s-grid">
+        <div class="s reveal"><div class="no">1</div><div class="ic">📱</div><h3>友だち追加</h3><p>下のボタンから公式LINEを友だち追加します。タップするだけでかんたんです。</p></div>
+        <div class="s reveal"><div class="no">2</div><div class="ic">💬</div><h3>メッセージが届く</h3><p>追加後すぐに、受付のご案内メッセージが自動で届きます。</p></div>
+        <div class="s reveal"><div class="no">3</div><div class="ic">📝</div><h3>5分で受付完了</h3><p>案内にそって必要事項を入力すれば、受付は最短5分で完了します。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- assurance -->
+
+  <section class="blk assure">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">Reassurance</span>
+        <h2>安心してご登録ください</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="a-grid">
+        <div class="a reveal"><div class="ic">¥</div><p>登録・受付は<br>すべて無料です</p></div>
+        <div class="a reveal"><div class="ic">🔒</div><p>個人情報は<br>厳重に管理します</p></div>
+        <div class="a reveal"><div class="ic">✓</div><p>不要なときは<br>いつでもブロックOK</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- faq -->
+
+  <section class="blk faq">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">FAQ</span>
+        <h2>よくあるご質問</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item"><button class="faq-q"><span class="q">Q.</span>本当に無料で受付できますか？<span class="plus">＋</span></button><div class="faq-a"><p>はい、友だち追加・受付ともに完全無料です。料金は一切かかりません。</p></div></div>
+        <div class="faq-item"><button class="faq-q"><span class="q">Q.</span>0時を過ぎたらどうなりますか？<span class="plus">＋</span></button><div class="faq-a"><p>カウントダウンは毎日0時にリセットされますが、ご安心ください。受付が済まなかった場合でも、公式LINEにメッセージをお送りいただければ、あらためて対応させていただきます。</p></div></div>
+        <div class="faq-item"><button class="faq-q"><span class="q">Q.</span>たくさん通知が届きませんか？<span class="plus">＋</span></button><div class="faq-a"><p>ご安心ください。配信が不要になった際は、いつでもブロックで停止していただけます。</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- final cta -->
+
+  <section class="final" id="cta">
+    <div class="wrap">
+      <span class="kicker">Add Friend</span>
+      <h2>本日0時までに、<br>友だち追加でお申し込みを。</h2>
+      <p>友だち追加後、最短5分で受付が完了します。</p>
+      <div class="mini-cd">
+        <div class="u"><div class="n" id="h2">00</div><div class="l">Hours</div></div>
+        <div class="u"><div class="n" id="m2">00</div><div class="l">Min</div></div>
+        <div class="u"><div class="n" id="s2">00</div><div class="l">Sec</div></div>
+      </div>
+      <a href="https://lin.ee/5DeqRw2" target="_blank" rel="noopener" class="line-btn" style="background:#fff;color:var(--line-d);box-shadow:0 14px 32px rgba(0,0,0,.18)"><svg><use href="#ln"/></svg>タップで友だち追加（無料）</a>
+      <p class="fnote">※ ボタンをタップすると公式LINEが開きます</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="logo"><span class="lead">NPO法人</span>日本ライフサポート機構</div>
+    <p class="company">東京都渋谷区神南1-19-11</p>
+    <p><a href="#">プライバシーポリシー</a><a href="#">お問い合わせ</a></p>
+    <p class="cp">© 2026 NPO法人 日本ライフサポート機構. All rights reserved.</p>
+  </footer>
+
+  <div class="sticky"><a href="https://lin.ee/5DeqRw2" target="_blank" rel="noopener"><svg><use href="#ln"/></svg>友だち追加で受け取る<span class="mini" id="hms">00:00:00</span></a></div>
+
+<script>
+  // ===== 24h countdown synced to clock: counts down to next 0:00, resets daily =====
+  function tick(){
+    const now=new Date();
+    const next=new Date(now); next.setHours(24,0,0,0); // 翌0時
+    let diff=Math.max(0,next-now);
+    const h=Math.floor(diff/3600000), m=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);
+    const z=n=>String(n).padStart(2,'0');
+    const H=z(h),M=z(m),S=z(s);
+    set('h',H);set('m',M);set('s',S);
+    set('h2',H);set('m2',M);set('s2',S);
+    const hms=document.getElementById('hms'); if(hms) hms.textContent=H+':'+M+':'+S;
+  }
+  function set(id,v){const el=document.getElementById(id); if(el&&el.textContent!==v) el.textContent=v;}
+  tick(); setInterval(tick,1000);
+
+  // nav shrink
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('shrink',scrollY>40));
+
+  // reveal
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // faq
+  document.querySelectorAll('.faq-q').forEach(b=>b.addEventListener('click',()=>{
+    const it=b.parentElement,a=it.querySelector('.faq-a'),open=it.classList.toggle('open');
+    a.style.maxHeight=open?a.scrollHeight+'px':0;
+  }));
+
+  // TikTok: 友だち追加ボタンのクリックでContact（お問い合わせ）イベントを発火
+  document.querySelectorAll('.line-btn, .nav-line, .sticky a').forEach(b=>{
+    b.addEventListener('click',()=>{
+      if(window.ttq){ ttq.track('Contact',{content_name:'LINE友だち追加'}); }
+    });
+  });
+</script>
 
 </body>
 </html>
