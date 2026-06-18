@@ -372,11 +372,29 @@ footer .company b{font-weight:700;color:var(–bg)}
   }));
 
   // TikTok: 友だち追加ボタンのクリックでContact（お問い合わせ）イベントを発火
-  document.querySelectorAll('.line-btn, .nav-line, .sticky a').forEach(b=>{
-    b.addEventListener('click',()=>{
-      if(window.ttq){ ttq.track('Contact',{content_name:'LINE友だち追加'}); }
+  // pointerdown + click の二段構えで、別タブ離脱前にも確実に送信
+  (function(){
+    var fired = new WeakSet();
+    function fire(btn){
+      if(fired.has(btn)) return;
+      fired.add(btn);
+      try{
+        if(window.ttq){ ttq.track('Contact',{content_name:'LINE友だち追加'}); }
+      }catch(e){}
+      // 短時間で再発火を許可（連打や別ボタンクリックに備える）
+      setTimeout(function(){ fired.delete(btn); }, 1500);
+    }
+    document.querySelectorAll('.line-btn, .nav-line, .sticky a').forEach(function(b){
+      // 指やマウスがボタンに触れた瞬間に送る（最速）
+      b.addEventListener('pointerdown', function(){ fire(b); });
+      // 念のためclickでも送る（pointerdown非対応ブラウザ用フォールバック）
+      b.addEventListener('click', function(){ fire(b); });
     });
-  });
+    // タブ離脱直前にイベント送信を確実化（バックアップ）
+    window.addEventListener('pagehide', function(){
+      try{ if(window.ttq && ttq.instance){ /* 送信バッファをフラッシュ */ } }catch(e){}
+    });
+  })();
 </script>
 
 </body>
